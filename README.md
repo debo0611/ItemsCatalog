@@ -32,7 +32,7 @@ The project is developed in the catalog folder provided in the VM, so repository
 1. Download the fullstack nanodegree VM provided by Udacity
 2. vagrant up
 3. vagrant ssh
-4. Inside the fullstack/vagrant/catalog folder (in the local system), clone this repo: <p>git clone https://github.com/debo0611/ItemsCatalog.git</p>
+4. Inside the fullstack/vagrant/catalog folder (in the local system), clone this repo: <p> git clone https://github.com/debo0611/ItemsCatalog.git </p>
 
 Note that 'vagrant' is the folder shared between the local system and the VM.
 5. Access the catalog folder from the VM (accessed via vagrant ssh)
@@ -47,7 +47,7 @@ Command to start the application:
 $ python3 run.py 
 
 Access it in browser:
-<p>http://localhost:8080/</p>
+<p> http://localhost:8080/ </p>
 
 Access REST API endpoints using a REST client (like POSTMAN):
 
@@ -61,4 +61,4 @@ Access REST API endpoints using a REST client (like POSTMAN):
 
 If the user is logged in for a long time, there can be an issue with logout:
 Please use the below url to login a different user:
-<p>http://localhost:8080/login</p>
+<p> http://localhost:8080/login </p>
