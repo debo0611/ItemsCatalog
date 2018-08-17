@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <h4 style="margin-left: 45px">Delete the item with below details?</h4>
+            <ul style="margin-left: 120px" class="list-group">
+                <li class="list-group-item">Item Id: {{ item._id }} </li>
+                <li class="list-group-item">Item : {{ item.name }} </li>
+                <li class="list-group-item">Item description : {{ item.description }}</li>
+            </ul>
+        <br>
+        <form action="{{ url_for('catalog.delete_item', item_id=item._id) }}" method="POST" style="margin-left: 45px">
+            <button type="submit" class="btn btn-sm btn-primary"> delete </button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item">name: {{ category.name }}</li>
+            <li class="list-group-item">owner: {{ category.owner }}</li>
+            <li class="list-group-item">id: {{ category._id }}</li>
+        </ul>
+        <br>
+        {% if (user['authorized'] and user['email'] == category.owner) %}
+            <a type="button" class="btn btn-sm btn-primary" href="{{ url_for('catalog.edit_category', category_id=category._id) }}">Edit category</a>
+            <a type="button" class="btn btn-sm btn-danger" href="{{ url_for('catalog.delete_category', category_id=category._id) }}">Delete category</a>
+            <a type="button" class="btn btn-sm btn-warning" href="{{ url_for('catalog.display_catalog') }}">Cancel</a>
+        {% endif %}
+    </div>
+{% endblock %}

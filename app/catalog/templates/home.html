@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h3><strong> Categories </strong></h3>
+    <br>
+    {% for catalog in catalogs %}
+        <ul class="list-group">
+            <h4><strong><a href="{{ url_for('catalog.display_category', category_id=catalog._id) }}"> {{ catalog.name }} </a></strong></h4>
+            <h5> id: {{ catalog._id }} </h5>   
+            <h5> owner: {{ catalog.owner }} </h5>            
+        </ul>
+        <br>
+
+    {% endfor %}
+    <a type="button" class="btn btn-sm btn-success" href="{{ url_for('catalog.add_category') }}">Add Category</a>
+    <br>
+    <hr>
+    
+</div>
+
+
+<div class="container">
+    <h3><strong> Items </strong></h3>
+    <br>
+    {% for item in items %}
+        <ul class="list-group">  
+            <h4><strong> <a href="{{ url_for('catalog.display_item', item_id=item._id) }}"> {{ item.name }} </a> </strong></h4>
+            <h5> id: {{ item._id }} </h5>
+            <h5> owner: {{ item.owner }} </h5>
+            <h5> category_id: {{ item.category_id }} </h5>
+            <br>
+        </ul>
+    {% endfor %}
+
+    <a type="button" class="btn btn-sm btn-success" href="{{ url_for('catalog.add_item') }}">Add Item</a>
+
+</div>
+
+{% endblock %}

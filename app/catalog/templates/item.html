@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item">name: {{ item.name }}</li>
+            <li class="list-group-item">description: {{ item.description }}</li>
+            <li class="list-group-item">create_time: {{ item.create_time }}</li>
+            <li class="list-group-item">owner: {{ item.owner }}</li>
+            <li class="list-group-item">id: {{ item._id }}</li>
+        </ul>
+        <br>
+        {% if (user['authorized'] and user['email'] == item.owner) %}
+            <a type="button" class="btn btn-sm btn-primary" href="{{ url_for('catalog.edit_item', item_id=item._id) }}">Edit item</a>
+            <a type="button" class="btn btn-sm btn-danger" href="{{ url_for('catalog.delete_item', item_id=item._id) }}">Delete item</a>
+            <a type="button" class="btn btn-sm btn-warning" href="{{ url_for('catalog.display_catalog') }}">Cancel</a>
+        {% endif %}
+    </div>
+{% endblock %}
