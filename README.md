@@ -4,13 +4,13 @@ Welcome to the Items catalog project. This project is created as a part of Udaci
 
 
 ## Tools/technology used:
-python3
-Flask
-PostgreSQL
-SQLAlchemy
-Jinja2
-Bootstrap
-REST API creation/testing
+- python3
+- Flask
+- PostgreSQL
+- SQLAlchemy
+- Jinja2
+- Bootstrap
+- REST API creation/testing
 
 
 ## Prerequisites:
@@ -18,11 +18,11 @@ REST API creation/testing
 Most of the python packages are already installed in the Udacity fullstack VM.
 Some additional flask extensions that were used for developing the project are:
 
-Flask-Bootstrap
-Flask-HTTPAuth
-Flask-Login
-Flask-WTF
-Flask-SQLAlchemy
+- Flask-Bootstrap
+- Flask-HTTPAuth
+- Flask-Login
+- Flask-WTF
+- Flask-SQLAlchemy
 
 
 ## Installation 
@@ -32,19 +32,19 @@ The project is developed in the catalog folder provided in the VM, so repository
 1. Download the fullstack nanodegree VM provided by Udacity
 2. vagrant up
 3. vagrant ssh
-4. Inside the fullstack/vagrant/catalog folder (in the local system), clone this repo:
-# git clone <>
+4. Inside the fullstack/vagrant/catalog folder (in the local system), clone this repo: git clone https://github.com/debo0611/ItemsCatalog.git
+
 Note that 'vagrant' is the folder shared between the local system and the VM.
 5. Access the catalog folder from the VM (accessed via vagrant ssh)
 
-6. Database used/created (in the VM) is "catalog_db". (This db need to be pre-created)
+6. Database used/created (in the VM) is "catalog". (This db need to be pre-created)
 Two tables are created in the above db (they will be created, if not already created, when the application runs):
-a. ‘catalog’, and 
+a. ‘catalog’ (should have been named 'category')
 b. 'item’
 
 ## Usage: 
 Command to start the application: 
-# python3 run.py 
+$ python3 run.py 
 
 Access it in browser:
 http://localhost:8080/ 
