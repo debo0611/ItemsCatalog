@@ -2,6 +2,7 @@ from app import db
 
 from datetime import datetime
 
+
 class Catalog(db.Model):
     __tablename__ = 'catalog'
 
@@ -16,11 +17,12 @@ class Catalog(db.Model):
         self.owner = owner
 
     def __repr__(self):
-        return 'The id is {}, Name is {}, Owner is {}'.format(self._id, self.name, self.owner)
+        return 'The id is {}, Name is {}, '
+        'Owner is {}'.format(self._id, self.name, self.owner)
 
     def __str__(self):
-        return 'The created catalog is {} with id {} and owner {}'.format(self.name, self._id, self.owner)
-
+        return 'The created catalog is {} with id {}'
+        ' and owner {}'.format(self.name, self._id, self.owner)
 
     def serialize(self):
         """
@@ -58,6 +60,7 @@ class Item(db.Model):
         return 'Str rep -- name {} -- id {}'.format(self.name, self._id)
 
     def serialize(self):
+        """serialize"""
         return {
             'id': self._id,
             'name': self.name,

@@ -8,6 +8,7 @@ class EditCategoryForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Update')
 
+
 class EditItemForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
@@ -25,4 +26,3 @@ class CreateItemForm(FlaskForm):
     description = StringField('Desription')
     category_id = StringField('category_id', validators=[DataRequired()])
     submit = SubmitField('Submit')
-    
