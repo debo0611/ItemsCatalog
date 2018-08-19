@@ -4,10 +4,14 @@ from app.api import api
 from app.catalog.models import Catalog, Item
 from flask import jsonify
 
+
 @api.route('/categories')
 def categories_api():
     """
     Api endpoint to lists all created categories
+
+    Returns:
+        serialized category list
     """
     categories = Catalog.query.all()
     category_list = [c.serialize() for c in categories]
@@ -18,6 +22,10 @@ def categories_api():
 def category_api(category_id):
     """
     Api endpoint to show a category with a given id
+
+    Returns:
+        serialized output corresponding to a
+        category
     """
     category = Catalog.query.get(category_id)
     return jsonify(category.serialize())
@@ -27,15 +35,22 @@ def category_api(category_id):
 def items_api():
     """
     Api endpoint to list all created items
+
+    Returns:
+        Serialized item list
     """
     items = Item.query.all()
     item_list = [i.serialize() for i in items]
     return jsonify(item_list)
 
+
 @api.route('/item/<int:item_id>')
 def item_api(item_id):
     """
     Api endpoint to show an item with a given id
+
+    Retuns:
+        Serialized output corresponding to an item
     """
     item = Item.query.get(item_id)
     return jsonify(item.serialize())

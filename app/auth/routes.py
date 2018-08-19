@@ -1,13 +1,22 @@
 from app.auth import auth
 from app import db
 # from app.catalog.models import Catalog, Item
-from flask import render_template, flash, request, redirect, url_for, make_response
+from flask import (render_template,
+                   flash,
+                   request,
+                   redirect,
+                   url_for,
+                   make_response)
 from flask_login import login_required
 from flask import session as login_session
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 # from app.catalog.forms import EditItemForm
-import json, os, random, requests, string
+import json
+import os
+import random
+import requests
+import string
 import httplib2
 
 CURRENT_DIR = os.path.dirname(__file__)
@@ -18,15 +27,23 @@ CLIENT_ID = json.loads(
 
 @auth.route('/login')
 def showLogin():
+    """
+    Route to handle login
+    """
     state = ''.join(
-        random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+        random.choice(string.ascii_uppercase + string.digits)
+        for x in range(32))
     login_session['state'] = state
     # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
 
+
 # GConnect
 @auth.route('/gconnect', methods=['POST'])
 def gconnect():
+    """
+    Route to connect to google sign in via OAuth2
+    """
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -82,7 +99,8 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
+        response = make_response(json.dumps('Current user '
+                                            'is already connected.'),
                                  200)
         response.headers['Content-Type'] = 'application/json'
         return response
@@ -102,27 +120,25 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
-    # see if user exists, if it doesn't make a new one
-    # user_id = getUserID(login_session['email'])
-    # if not user_id:
-    #     user_id = createUser(login_session)
-    # login_session['user_id'] = user_id
-
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' " style = "width: 300px;height: 300px;'
+    'border-radius: 150px;-webkit-border-radius: 150px;'
+    '-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     return output
 
 
-
 @auth.route('/gdisconnect')
 def gdisconnect():
-        # Only disconnect a connected user.
+    """
+    Route to logout / disconnect a logged in user
+    """
+    # Only disconnect a connected user.
     access_token = login_session.get('access_token')
     if access_token is None:
         response = make_response(
@@ -140,7 +156,8 @@ def gdisconnect():
         del login_session['email']
         del login_session['picture']
 
-        # response = make_response(json.dumps('Successfully disconnected.'), 200)
+        # response = make_response(json.dumps
+        # ('Successfully disconnected.'), 200)
         # response.headers['Content-Type'] = 'application/json'
         response = redirect(url_for('catalog.display_catalog'))
         flash("You are now logged out.")

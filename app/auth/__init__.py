@@ -1,3 +1,5 @@
+"""___init___.py for auth blueprint"""
+
 from flask import Blueprint
 
 auth = Blueprint('auth', __name__, template_folder='templates')
